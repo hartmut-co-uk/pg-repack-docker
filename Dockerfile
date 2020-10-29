@@ -5,3 +5,5 @@ RUN apt-get update --fix-missing && \
 
 COPY scripts .
 RUN chmod +x ./*.sh && bash ./install_pg_repack.sh
+ENTRYPOINT ["pg_repack"]
+CMD ["--help"]
