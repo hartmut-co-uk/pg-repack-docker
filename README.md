@@ -17,5 +17,5 @@ https://hub.docker.com/r/hartmutcouk/pg-repack-docker/
     
 ### run (example)
     
-    docker run -e PGPASSWORD=supersecure -it --rm hartmut-co-uk/pg-repack-docker pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
+    docker run -e PGPASSWORD=supersecure -it --rm hartmut-co-uk/pg-repack-docker -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
 
