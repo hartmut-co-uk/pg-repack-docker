@@ -24,22 +24,34 @@ https://hub.docker.com/r/hartmutcouk/pg-repack-docker/
 
 ### build
 
-    docker build . -t pg-repack-docker
+```
+docker build . -t pg-repack-docker
+```
     
 ### run postgres
 
 This image extends the official [postgres docker image](https://hub.docker.com/_/postgres/) - so you can start a container with postgres following the official image.   
-e.g. pg10 (+pg_repack 1.4.3): 
+e.g. pg11 (+pg_repack 1.4.4): 
     
 ```
-docker run --name pg10 -p 5432:5432 -d hartmutcouk/pg-repack-docker:1.4.3
+docker run -e POSTGRES_PASSWORD=1234 --name pg11 -p 5432:5432 -d hartmutcouk/pg-repack-docker:1.4.4
+```
+
+psql from local:
+```
+PGPASSWORD=supersecure psql -h localhost -U postgres
+```
+
+psql via docker:
+```
+docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.4.4 psql -h localhost -U postgres
 ```
 
 
 ### exec pg_repack against host network
     
 ```
-docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.4.3 pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
+docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.4.4 pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
 ```
 
 Notes:
