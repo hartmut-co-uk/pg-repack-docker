@@ -1,4 +1,4 @@
-FROM postgres:11
+FROM postgres:12
 
 RUN apt-get update --fix-missing && \
     apt-get install -y postgresql-server-dev-$PG_MAJOR wget openssh-server
