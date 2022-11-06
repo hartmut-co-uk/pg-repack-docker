@@ -16,6 +16,7 @@ This images follows the pg_repack releases + compatibility with PostgreSQL.
 | 12       | 1.4.5     |
 | 13       | 1.4.6     |
 | 14       | 1.4.7     |
+| 15       | 1.4.8     |
 
 
 ## Dockerhub
@@ -32,10 +33,10 @@ docker build . -t pg-repack-docker
 ### run postgres
 
 This image extends the official [postgres docker image](https://hub.docker.com/_/postgres/) - so you can start a container with postgres following the official image.   
-e.g. pg11 (+pg_repack 1.4.4): 
+e.g. pg15 (+pg_repack 1.4.8): 
     
 ```
-docker run -e POSTGRES_PASSWORD=1234 --name pg11 -p 5432:5432 -d hartmutcouk/pg-repack-docker:1.4.4
+docker run -e POSTGRES_PASSWORD=1234 --name pg15 -p 5432:5432 -d hartmutcouk/pg-repack-docker:1.4.8
 ```
 
 psql from local:
@@ -45,14 +46,14 @@ PGPASSWORD=supersecure psql -h localhost -U postgres
 
 psql via docker:
 ```
-docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.4.4 psql -h localhost -U postgres
+docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.4.8 psql -h localhost -U postgres
 ```
 
 
 ### exec pg_repack against host network
     
 ```
-docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.4.4 pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
+docker run -e PGPASSWORD=1234 -it --rm --network host hartmutcouk/pg-repack-docker:1.4.7 pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
 ```
 
 Notes:
