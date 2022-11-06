@@ -16,6 +16,7 @@ This images follows the pg_repack releases + compatibility with PostgreSQL.
 | 12       | 1.4.5     |
 | 13       | 1.4.6     |
 | 14       | 1.4.7     |
+| 15       | 1.4.8     |
 
 
 ## Dockerhub

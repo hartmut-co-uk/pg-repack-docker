@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 apt-get install -y make unzip gcc libssl-dev zlib1g-dev liblz4-dev libreadline-dev
-wget -q -O pg_repack.zip "https://api.pgxn.org/dist/pg_repack/1.4.7/pg_repack-1.4.7.zip"
+wget -q -O pg_repack.zip "https://api.pgxn.org/dist/pg_repack/1.4.8/pg_repack-1.4.8.zip"
 unzip pg_repack.zip && rm pg_repack.zip
 cd pg_repack-*
 make && make install
