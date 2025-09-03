@@ -1,6 +1,6 @@
 # pg-repack-docker
 
-Docker image with 'pg_repack' (PostgreSQL extension) installed, can be run natively - or be used 'client-side' to run/invoke pg_repack functionality 
+Docker image with 'pg_repack' (PostgreSQL extension) installed, can be run natively - or be used 'client-side' to run/invoke pg_repack functionality
 for a PostgreSQL database with the extension installed.
 
 Reference: https://github.com/reorg/pg_repack
@@ -31,14 +31,14 @@ https://hub.docker.com/r/hartmutcouk/pg-repack-docker/
 ```
 docker build . -t pg-repack-docker
 ```
-    
+
 ### run postgres
 
-This image extends the official [postgres docker image](https://hub.docker.com/_/postgres/) - so you can start a container with postgres following the official image.   
+This image extends the official [postgres docker image](https://hub.docker.com/_/postgres/) - so you can start a container with postgres following the official image.      
 e.g. pg17 (+pg_repack 1.5.1):
-    
+
 ```
-docker run -e POSTGRES_PASSWORD=1234 --name pg16 -p 5432:5432 -d hartmutcouk/pg-repack-docker:1.5.1
+docker run -e POSTGRES_PASSWORD=supersecure --name pg-repack -p 5432:5432 -d hartmutcouk/pg-repack-docker:1.5.1
 ```
 
 psql from local:
@@ -53,9 +53,9 @@ docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repa
 
 
 ### exec pg_repack against host network
-    
+
 ```
-docker run -e PGPASSWORD=1234 -it --rm --network host hartmutcouk/pg-repack-docker:1.5.1 pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
+docker run -e PGPASSWORD=supersecure -it --rm --network host hartmutcouk/pg-repack-docker:1.5.1 pg_repack -h localhost -U dbroot --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
 ```
 
 Notes:
