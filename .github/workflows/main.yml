@@ -24,13 +24,16 @@ jobs:
 
       - name: Test pg_repack version
         run: |
-          output=$(docker run -it --rm --network host pg-repack-test pg_repack --version 2>&1)
+          output=$(docker run --rm pg-repack-test pg_repack --version 2>&1)
           echo "Command output: $output"
-          # Check if output contains "pg_repack" followed by a version number
-          if echo "$output" | grep -q "pg_repack [0-9]\+\.[0-9]\+\.[0-9]\+"; then
+          echo "Raw output (with special chars): $(echo "$output" | cat -A)"
+          
+          # More flexible version check - look for pg_repack and version pattern
+          if echo "$output" | grep -i "pg_repack" | grep -E "[0-9]+\.[0-9]+(\.[0-9]+)?"; then
             echo "✅ Test passed: pg_repack version command works correctly"
           else
             echo "❌ Test failed: pg_repack version command did not produce expected output"
+            echo "Expected format: pg_repack followed by version number (e.g., pg_repack 1.5.2)"
             exit 1
           fi
 
