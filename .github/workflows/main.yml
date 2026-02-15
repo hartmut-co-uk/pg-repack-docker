@@ -2,7 +2,7 @@ name: Docker Build and Push
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ master, main ]
     tags: [ '*' ]
   pull_request:
     branches: [ master, main ]
@@ -57,12 +57,7 @@ jobs:
         run: |
           SHOULD_PUSH=false
           if [[ -n "${{ secrets.DOCKERHUB_USERNAME }}" ]]; then
-            if [[ "$GITHUB_REF" == refs/tags/* ]] || \
-               [[ "$GITHUB_REF" == refs/heads/master ]] || \
-               [[ "$GITHUB_REF" == refs/heads/main ]] || \
-               [[ "${{ github.event_name }}" == "pull_request" ]]; then
-              SHOULD_PUSH=true
-            fi
+            SHOULD_PUSH=true
           fi
           echo "push=$SHOULD_PUSH" >> "$GITHUB_OUTPUT"
 
